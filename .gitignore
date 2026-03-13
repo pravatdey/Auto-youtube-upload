@@ -1,0 +1,9 @@
+config/client_secrets.json
+config/youtube_token.json
+token.pickle
+*.pickle
+.env
+__pycache__/
+*.pyc
+output/
+downloads/

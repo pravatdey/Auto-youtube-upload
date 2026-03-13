@@ -1,0 +1,42 @@
+name: Auto YouTube Upload
+
+on:
+  push:
+    paths:
+      - 'jobs.yaml'
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write YouTube credentials from secrets
+        run: |
+          mkdir -p config
+          echo '${{ secrets.CLIENT_SECRETS_JSON }}' > config/client_secrets.json
+          echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
+
+      - name: Run upload pipeline
+        run: python ci_run.py
+
+      - name: Commit updated playlist cache
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add config/playlists.json
+          git diff --cached --quiet || git commit -m "Update playlist cache [skip ci]"
+          git push

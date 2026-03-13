@@ -1,0 +1,56 @@
+# ===== Video Processing =====
+pitch_shift: 1.15            # 15% pitch up (sounds different enough to avoid copyright)
+split_duration: 900           # 15 minutes in seconds
+crf: 20                       # Video quality (lower = better, 18-23 recommended)
+preset: fast                  # Encoding speed: ultrafast, superfast, veryfast, fast, medium, slow
+
+# ===== Your Watermark / Branding =====
+watermark_text: "Civil Services & Competitive Exam Prep"
+logo_path: "assets/watermark.png"    # Path to your PNG logo
+logo_position: "bottom-right"        # top-left, top-right, bottom-left, bottom-right, center
+logo_scale: 0.12                     # Logo size as fraction of video width (12%)
+text_position: "top-left"            # Where to place text watermark
+font_size: 24
+font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 1.0 = solid)
+
+# ===== Existing Watermark Removal =====
+# Set coordinates to remove original watermarks/logos from source video
+# Format: "x:y:width:height" - use null to skip
+remove_watermark: null               # e.g., "50:30:120:60"
+blur_region: null                    # e.g., "160:380:180:90" - blurs a region instead
+
+# ===== Playlist =====
+playlist_name: null                  # YouTube playlist name (created if doesn't exist)
+
+# ===== Thumbnail =====
+thumbnail_path: "assets/thumbnail.jpg"   # Path to thumbnail image (JPG/PNG, max 2MB, 1280x720 recommended)
+
+# ===== YouTube Upload =====
+default_privacy: "private"           # Start private, manually make public after review
+category_id: "27"                    # 27 = Education
+default_tags:
+  - "UPSC"
+  - "UPSC current affairs"
+  - "UPSC 2025"
+  - "IAS preparation"
+  - "civil services"
+  - "current affairs today"
+  - "daily current affairs"
+  - "UPSC prelims"
+  - "UPSC mains"
+  - "IAS IPS preparation"
+  - "current affairs for UPSC"
+  - "UPSC news"
+  - "competitive exam"
+  - "GK today"
+  - "current affairs in english"
+title_template: "{title} - Part {part_number}"
+description_template: "Part {part_number} of {total_parts}"
+
+# ===== YouTube Credentials =====
+client_secrets_file: "config/client_secrets.json"
+token_file: "config/youtube_token.json"
+
+# ===== Paths =====
+input_dir: "C:/Users/PravatkumarDey/Downloads"
+output_dir: "output"
