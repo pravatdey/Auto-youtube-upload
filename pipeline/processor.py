@@ -70,6 +70,9 @@ def process_video(input_path: str, output_path: str, config: dict, logo_path: st
     if video_args:
         print(f"Video filters active (CRF={config.get('crf', 20)}, preset={config.get('preset', 'fast')})")
 
+    # Print full command for debugging
+    print(f"FFmpeg command: {' '.join(cmd)}")
+
     # Run ffmpeg with real-time output
     process = subprocess.Popen(
         cmd,
@@ -80,8 +83,10 @@ def process_video(input_path: str, output_path: str, config: dict, logo_path: st
 
     # Print stderr lines for progress (ffmpeg writes progress to stderr)
     last_time = ""
+    stderr_lines = []
     for line in process.stderr:
         line = line.strip()
+        stderr_lines.append(line)
         # Show progress lines (contain "time=")
         if "time=" in line:
             # Extract time value for compact progress display
@@ -97,6 +102,9 @@ def process_video(input_path: str, output_path: str, config: dict, logo_path: st
     print()  # newline after progress
 
     if process.returncode != 0:
+        # Print last 30 lines of stderr for debugging
+        error_output = "\n".join(stderr_lines[-30:])
+        print(f"FFmpeg stderr:\n{error_output}", file=sys.stderr)
         raise RuntimeError(f"FFmpeg failed with exit code {process.returncode}")
 
     output_size = os.path.getsize(output_path) / (1024 * 1024)
