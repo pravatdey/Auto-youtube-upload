@@ -3,7 +3,8 @@
 import os
 import re
 
-import requests
+import gdown
+
 
 GDRIVE_URL_PATTERNS = [
     r"/file/d/([a-zA-Z0-9_-]+)",
@@ -23,7 +24,7 @@ def extract_file_id(url: str) -> str:
 def download_from_gdrive(url: str, output_dir: str = "downloads") -> str:
     """Download a file from Google Drive.
 
-    Handles large-file confirmation cookie automatically.
+    Uses gdown to handle large files, confirmation pages, and cookies.
 
     Args:
         url: Google Drive share/view URL
@@ -35,31 +36,17 @@ def download_from_gdrive(url: str, output_dir: str = "downloads") -> str:
     file_id = extract_file_id(url)
     os.makedirs(output_dir, exist_ok=True)
 
-    session = requests.Session()
-    download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
-    response = session.get(download_url, stream=True)
-
-    # Handle large file confirmation page
-    for key, value in response.cookies.items():
-        if key.startswith("download_warning"):
-            download_url = f"https://drive.google.com/uc?export=download&confirm={value}&id={file_id}"
-            response = session.get(download_url, stream=True)
-            break
-
-    # Determine filename from Content-Disposition header or use file_id
-    filename = f"{file_id}.mp4"
-    cd = response.headers.get("content-disposition", "")
-    if "filename=" in cd:
-        matches = re.findall('filename="?([^"]+)"?', cd)
-        if matches:
-            filename = matches[0]
-
-    output_path = os.path.join(output_dir, filename)
+    gdrive_url = f"https://drive.google.com/uc?id={file_id}"
 
     print(f"Downloading from Google Drive: {file_id}")
-    with open(output_path, "wb") as f:
-        for chunk in response.iter_content(chunk_size=32768):
-            f.write(chunk)
+    output_path = gdown.download(gdrive_url, output=output_dir + "/", fuzzy=True)
+
+    if output_path is None:
+        raise RuntimeError(
+            f"Failed to download from Google Drive. "
+            f"Make sure the file is shared as 'Anyone with the link can view'.\n"
+            f"File ID: {file_id}"
+        )
 
     size_mb = os.path.getsize(output_path) / (1024 * 1024)
     print(f"Downloaded: {output_path} ({size_mb:.1f} MB)")

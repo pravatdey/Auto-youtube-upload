@@ -39,6 +39,14 @@ def run_jobs():
         print("\n--- Downloading from Google Drive ---")
         video_path = download_from_gdrive(job["gdrive_url"], output_dir="downloads")
 
+        # Validate download
+        file_size = os.path.getsize(video_path) / (1024 * 1024)
+        if file_size < 1:
+            raise RuntimeError(
+                f"Downloaded file is too small ({file_size:.1f} MB). "
+                f"The Google Drive file may not be shared publicly."
+            )
+
         # Step 2: Process video
         output_dir = config.get("output_dir", "output")
         base_name = os.path.splitext(os.path.basename(video_path))[0]
