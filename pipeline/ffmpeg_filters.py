@@ -18,7 +18,7 @@ def build_video_filters(config: dict, logo_path: str | None = None, video_width:
     remove_wm = config.get("remove_watermark")
     if remove_wm:
         x, y, w, h = _parse_region(remove_wm, video_width, video_height)
-        chains.append(f"[{current}]delogo=x={x}:y={y}:w={w}:h={h}:band=10[v_dl]")
+        chains.append(f"[{current}]delogo=x={x}:y={y}:w={w}:h={h}[v_dl]")
         current = "v_dl"
 
     # Step 2: Blur a region (for stubborn watermarks)
