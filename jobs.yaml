@@ -2,7 +2,7 @@
 #
 # Each job downloads a video from Google Drive, processes it (pitch shift + watermark),
 # splits into parts, and uploads to YouTube.
-# Re-trigger: fixed percentage-based watermark removal for 640x360 video
+# Re-trigger: added FFmpeg error logging for debugging
 
 jobs:
   - gdrive_url: "https://drive.google.com/file/d/1CP99WF3UtYbnMQemUjxgPLfLXhbcBurH/view"
