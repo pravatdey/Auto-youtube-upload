@@ -4,13 +4,7 @@
 # splits into parts, and uploads to YouTube in the specified playlist.
 
 jobs:
-  # Example job - replace with your actual values:
-  # - gdrive_url: "https://drive.google.com/file/d/YOUR_FILE_ID/view"
-  #   title: "Complete Ancient History"
-  #   playlist: "Complete Ancient History"
-  #   description: "Ancient History for UPSC preparation"
-  #   # Optional overrides (defaults come from config.yaml):
-  #   # tags: ["UPSC", "Ancient History"]
-  #   # privacy: "private"
-  #   # pitch: 1.15
-  #   # split_duration: 900
+  - gdrive_url: "https://drive.google.com/file/d/1CP99WF3UtYbnMQemUjxgPLfLXhbcBurH/view"
+    title: "Complete Ancient History"
+    playlist: "Complete Ancient History"
+    description: "Complete Ancient History for UPSC Civil Services preparation"
