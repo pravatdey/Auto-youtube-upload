@@ -15,9 +15,9 @@ font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 
 
 # ===== Existing Watermark Removal =====
 # Set coordinates to remove original watermarks/logos from source video
-# Format: "x:y:width:height" - use null to skip
-remove_watermark: "1720:15:180:100"   # StudyIQ logo at top-right corner (1920x1080)
-blur_region: "1300:630:400:400"      # StudyIQ badge at bottom-right corner (1920x1080)
+# Format: "x%:y%:width%:height%" - percentages of video dimensions, use null to skip
+remove_watermark: "86%:1%:13%:14%"    # StudyIQ logo at top-right corner
+blur_region: "67%:58%:22%:37%"        # StudyIQ badge at bottom-right corner
 
 # ===== Playlist =====
 playlist_name: null                  # YouTube playlist name (set to null to skip playlist)

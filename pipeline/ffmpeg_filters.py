@@ -3,7 +3,7 @@
 import os
 
 
-def build_video_filters(config: dict, logo_path: str | None = None) -> tuple[list[str], bool]:
+def build_video_filters(config: dict, logo_path: str | None = None, video_width: int = 1920, video_height: int = 1080) -> tuple[list[str], bool]:
     """Build the video filter chain.
 
     Returns:
@@ -17,14 +17,14 @@ def build_video_filters(config: dict, logo_path: str | None = None) -> tuple[lis
     # Step 1: Remove existing watermark with delogo
     remove_wm = config.get("remove_watermark")
     if remove_wm:
-        x, y, w, h = remove_wm.split(":")
+        x, y, w, h = _parse_region(remove_wm, video_width, video_height)
         chains.append(f"[{current}]delogo=x={x}:y={y}:w={w}:h={h}:band=10[v_dl]")
         current = "v_dl"
 
     # Step 2: Blur a region (for stubborn watermarks)
     blur = config.get("blur_region")
     if blur:
-        bx, by, bw, bh = blur.split(":")
+        bx, by, bw, bh = _parse_region(blur, video_width, video_height)
         chains.append(
             f"[{current}]split[blur_base][blur_src];"
             f"[blur_src]crop={bw}:{bh}:{bx}:{by},boxblur=15[blurred];"
@@ -136,6 +136,26 @@ def _text_position_expr(position: str) -> tuple[str, str]:
         "center": ("(w-tw)/2", "(h-th)/2"),
     }
     return positions.get(position, ("10", "10"))
+
+
+def _parse_region(region: str, video_width: int, video_height: int) -> tuple[str, str, str, str]:
+    """Parse a region string that supports percentage values.
+
+    Format: "x:y:w:h" where values can be absolute pixels or percentages (e.g. "86%:1%:13%:14%").
+    Percentages for x/w are relative to video width, y/h relative to video height.
+    Returns pixel values as strings.
+    """
+    parts = region.split(":")
+    ref_dims = [video_width, video_height, video_width, video_height]
+    result = []
+    for val, ref in zip(parts, ref_dims):
+        val = val.strip()
+        if val.endswith("%"):
+            pct = float(val[:-1]) / 100.0
+            result.append(str(int(ref * pct)))
+        else:
+            result.append(val)
+    return tuple(result)
 
 
 def _find_font(config: dict) -> str | None:

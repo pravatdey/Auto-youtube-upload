@@ -35,7 +35,7 @@ def process_video(input_path: str, output_path: str, config: dict, logo_path: st
     print(f"Resolution: {info['width']}x{info['height']}")
 
     # Build filter chains
-    video_args, uses_logo = build_video_filters(config, logo_path)
+    video_args, uses_logo = build_video_filters(config, logo_path, info["width"], info["height"])
     pitch_shift = config.get("pitch_shift", 1.0)
     audio_args = build_audio_filters(pitch_shift, sample_rate)
 
