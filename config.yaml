@@ -8,7 +8,7 @@ preset: fast                  # Encoding speed: ultrafast, superfast, veryfast, 
 watermark_text: "Civil Services & Competitive Exam Prep"
 logo_path: "assets/watermark.png"    # Path to your PNG logo
 logo_position: "bottom-right"        # top-left, top-right, bottom-left, bottom-right, center
-logo_scale: 0.12                     # Logo size as fraction of video width (12%)
+logo_scale: 0.15                     # Logo size as fraction of video width (15% - large & prominent)
 text_position: "top-left"            # Where to place text watermark
 font_size: 24
 font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 1.0 = solid)
@@ -16,11 +16,11 @@ font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 
 # ===== Existing Watermark Removal =====
 # Set coordinates to remove original watermarks/logos from source video
 # Format: "x:y:width:height" - use null to skip
-remove_watermark: null               # e.g., "50:30:120:60"
-blur_region: null                    # e.g., "160:380:180:90" - blurs a region instead
+remove_watermark: "1720:15:180:100"   # StudyIQ logo at top-right corner (1920x1080)
+blur_region: "1300:630:400:400"      # StudyIQ badge at bottom-right corner (1920x1080)
 
 # ===== Playlist =====
-playlist_name: null                  # YouTube playlist name (created if doesn't exist)
+playlist_name: null                  # YouTube playlist name (set to null to skip playlist)
 
 # ===== Thumbnail =====
 thumbnail_path: "assets/thumbnail.jpg"   # Path to thumbnail image (JPG/PNG, max 2MB, 1280x720 recommended)

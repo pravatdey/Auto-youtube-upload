@@ -6,6 +6,5 @@
 jobs:
   - gdrive_url: "https://drive.google.com/file/d/1CP99WF3UtYbnMQemUjxgPLfLXhbcBurH/view"
     title: "Complete Ancient History"
-    playlist: "Complete Ancient History"
     description: "Complete Ancient History for UPSC Civil Services preparation"
     tags: ["UPSC", "Ancient History", "UPSC preparation", "civil services", "IAS", "history"]
