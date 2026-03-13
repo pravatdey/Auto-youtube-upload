@@ -26,7 +26,7 @@ playlist_name: null                  # YouTube playlist name (created if doesn't
 thumbnail_path: "assets/thumbnail.jpg"   # Path to thumbnail image (JPG/PNG, max 2MB, 1280x720 recommended)
 
 # ===== YouTube Upload =====
-default_privacy: "private"           # Start private, manually make public after review
+default_privacy: "public"            # Videos are public immediately after upload
 category_id: "27"                    # 27 = Education
 default_tags:
   - "UPSC"
