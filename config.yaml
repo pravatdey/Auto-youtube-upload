@@ -14,7 +14,7 @@ font_size: 24
 font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 1.0 = solid)
 
 # ===== Your Name (replaces "By- Aadesh Singh" during intro only) =====
-intro_byline: "By- Pravat Kumar Dey"
+intro_byline: null                       # Disabled
 intro_byline_fontsize: 20
 intro_byline_color: "white"
 
@@ -27,25 +27,21 @@ blur_region: null                        # Disabled
 # Additional blur regions to remove more branding
 extra_blur_regions: []                   # Disabled
 
-# ===== Intro Cover (first 2 minutes) =====
-# Covers StudyIQ marketing, teacher name, icons in first 120 seconds
-intro_cover_duration: 120             # 2 minutes in seconds
-intro_mute_duration: 120              # Mute audio for first 2 minutes (removes StudyIQ audio mentions)
+# ===== Trim =====
+trim_start: 20                        # Cut first 20 seconds (removes original intro)
 
-# Regions to cover with black box during intro (hides StudyIQ branding)
-intro_cover_regions:
-  - region: "0%:0%:100%:15%"          # Top banner - StudyIQ text & logo
-    color: "black"
-    opacity: "0.95"
-  - region: "0%:85%:100%:15%"         # Bottom area - teacher name "By- Aadesh Singh"
-    color: "black"
-    opacity: "0.95"
+# ===== Intro Cover =====
+intro_cover_duration: 0               # Disabled - trimming intro instead
+intro_mute_duration: 0                # Disabled
 
-# Your branding shown during intro (overlaid on the covered areas)
-intro_name: "Pravat Kumar Dey"
+# Regions to cover with black box during intro (disabled)
+intro_cover_regions: []
+
+# Your branding shown during intro (disabled)
+intro_name: null
 intro_name_fontsize: 36
 intro_name_color: "white"
-intro_channel_text: "Civil Services & Competitive Exam Prep"
+intro_channel_text: null
 intro_channel_fontsize: 28
 
 # ===== Playlist =====

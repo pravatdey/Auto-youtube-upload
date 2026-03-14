@@ -41,7 +41,12 @@ def process_video(input_path: str, output_path: str, config: dict, logo_path: st
     audio_args = build_audio_filters(pitch_shift, sample_rate, intro_mute)
 
     # Construct ffmpeg command
-    cmd = ["ffmpeg", "-y", "-i", input_path]
+    trim_start = config.get("trim_start", 0)
+    cmd = ["ffmpeg", "-y"]
+    if trim_start > 0:
+        cmd.extend(["-ss", str(trim_start)])
+        print(f"Trimming first {trim_start} seconds")
+    cmd.extend(["-i", input_path])
 
     # Add logo as second input if needed
     effective_logo = logo_path or config.get("logo_path")
