@@ -101,17 +101,33 @@ def build_video_filters(config: dict, logo_path: str | None = None, video_width:
             )
             current = label
 
-    # Step 4: Overlay PNG logo (your icon - replacing StudyIQ icon position)
+    # Step 4: Overlay PNG logo at all configured positions
     effective_logo = logo_path or config.get("logo_path")
     if effective_logo and os.path.isfile(effective_logo):
         uses_logo = True
-        scale = config.get("logo_scale", 0.12)
-        pos = _position_expr(config.get("logo_position", "bottom-right"))
-        chains.append(
-            f"[1:v]scale=iw*{scale}:-1[logo];"
-            f"[{current}][logo]overlay={pos}[v_logo]"
-        )
-        current = "v_logo"
+
+        # Build list of logo placements: primary + extra positions
+        logo_placements = []
+        primary_scale = config.get("logo_scale", 0.12)
+        primary_pos = config.get("logo_position", "bottom-right")
+        logo_placements.append({"position": primary_pos, "scale": primary_scale})
+
+        for extra in config.get("extra_logo_positions", []):
+            logo_placements.append({
+                "position": extra.get("position", "top-right"),
+                "scale": extra.get("scale", primary_scale),
+            })
+
+        for idx, placement in enumerate(logo_placements):
+            scale = placement["scale"]
+            pos = _position_expr(placement["position"])
+            logo_label = f"logo{idx}"
+            out_label = f"v_logo{idx}"
+            chains.append(
+                f"[1:v]scale=iw*{scale}:-1[{logo_label}];"
+                f"[{current}][{logo_label}]overlay={pos}[{out_label}]"
+            )
+            current = out_label
 
     # Step 5: Draw text watermark (your branding text - always visible)
     text = config.get("watermark_text")

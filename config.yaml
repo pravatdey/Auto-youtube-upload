@@ -9,6 +9,11 @@ watermark_text: "Civil Services & Competitive Exam Prep"
 logo_path: "assets/watermark.png"    # Path to your PNG logo
 logo_position: "bottom-right"        # top-left, top-right, bottom-left, bottom-right, center
 logo_scale: 0.05                     # Logo size 5% of video width
+
+# Extra logo overlays to cover StudyIQ icons
+extra_logo_positions:
+  - position: "top-right"            # Covers StudyIQ IAS logo at top-right
+    scale: 0.05
 text_position: "top-left"            # Where to place text watermark
 font_size: 24
 font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 1.0 = solid)
