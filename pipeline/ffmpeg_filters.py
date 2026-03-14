@@ -228,15 +228,20 @@ def _chain_atempo(factor: float) -> list[str]:
 
 
 def _position_expr(position: str) -> str:
-    """Convert position name to FFmpeg overlay expression."""
+    """Convert position name or custom 'x:y' to FFmpeg overlay expression.
+
+    Supports named positions (top-left, top-right, etc.) or custom
+    expressions like '(W-w)/2:5' for precise placement.
+    """
     positions = {
         "top-left": "15:15",
         "top-right": "W-w-15:15",
         "bottom-left": "15:H-h-15",
         "bottom-right": "W-w-15:H-h-15",
         "center": "(W-w)/2:(H-h)/2",
+        "top-center": "(W-w)/2:5",
     }
-    return positions.get(position, "W-w-15:H-h-15")
+    return positions.get(position, position)
 
 
 def _text_position_expr(position: str) -> tuple[str, str]:
