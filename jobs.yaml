@@ -2,7 +2,7 @@
 #
 # Each job downloads a video from Google Drive, processes it (pitch shift + watermark),
 # splits into parts, and uploads to YouTube.
-# Re-trigger: bigger top-right logo 8%, time-limited top-center for 35-39s splash
+# Re-trigger: top-right 5% tight to edge, top-center 5% time-limited
 
 jobs:
   - gdrive_url: "https://drive.google.com/file/d/1CP99WF3UtYbnMQemUjxgPLfLXhbcBurH/view"
