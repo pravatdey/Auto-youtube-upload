@@ -116,6 +116,8 @@ def build_video_filters(config: dict, logo_path: str | None = None, video_width:
             logo_placements.append({
                 "position": extra.get("position", "top-right"),
                 "scale": extra.get("scale", primary_scale),
+                "start": extra.get("start"),
+                "end": extra.get("end"),
             })
 
         for idx, placement in enumerate(logo_placements):
@@ -123,9 +125,21 @@ def build_video_filters(config: dict, logo_path: str | None = None, video_width:
             pos = _position_expr(placement["position"])
             logo_label = f"logo{idx}"
             out_label = f"v_logo{idx}"
+
+            # Build enable expression for time-limited overlays
+            enable = ""
+            start = placement.get("start")
+            end = placement.get("end")
+            if start is not None and end is not None:
+                enable = f":enable='between(t,{start},{end})'"
+            elif start is not None:
+                enable = f":enable='gte(t,{start})'"
+            elif end is not None:
+                enable = f":enable='lte(t,{end})'"
+
             chains.append(
                 f"[1:v]scale=iw*{scale}:-1[{logo_label}];"
-                f"[{current}][{logo_label}]overlay={pos}[{out_label}]"
+                f"[{current}][{logo_label}]overlay={pos}{enable}[{out_label}]"
             )
             current = out_label
 
