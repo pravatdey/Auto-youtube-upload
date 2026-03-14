@@ -12,8 +12,8 @@ logo_scale: 0.05                     # Logo size 5% of video width
 
 # Extra logo overlays to cover StudyIQ icons
 extra_logo_positions:
-  - position: "top-center"           # Covers StudyIQ IAS logo at top-center
-    scale: 0.05
+  - position: "top-right"            # Covers StudyIQ IAS logo at top-right corner
+    scale: 0.07
 text_position: "top-left"            # Where to place text watermark
 font_size: 24
 font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 1.0 = solid)
