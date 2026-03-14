@@ -8,16 +8,47 @@ preset: fast                  # Encoding speed: ultrafast, superfast, veryfast, 
 watermark_text: "Civil Services & Competitive Exam Prep"
 logo_path: "assets/watermark.png"    # Path to your PNG logo
 logo_position: "bottom-right"        # top-left, top-right, bottom-left, bottom-right, center
-logo_scale: 0.15                     # Logo size as fraction of video width (15% - large & prominent)
+logo_scale: 0.08                     # Logo size as fraction of video width (8% = small, same as StudyIQ icon)
 text_position: "top-left"            # Where to place text watermark
 font_size: 24
 font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 1.0 = solid)
+
+# ===== Your Name (replaces "By- Aadesh Singh" during intro only) =====
+intro_byline: "By- Pravat Kumar Dey"
+intro_byline_fontsize: 20
+intro_byline_color: "white"
 
 # ===== Existing Watermark Removal =====
 # Set coordinates to remove original watermarks/logos from source video
 # Format: "x%:y%:width%:height%" - percentages of video dimensions, use null to skip
 remove_watermark: "86%:1%:13%:14%"    # StudyIQ logo at top-right corner
 blur_region: "67%:58%:22%:37%"        # StudyIQ badge at bottom-right corner
+
+# Additional blur regions to remove more branding
+extra_blur_regions:
+  - "0%:0%:15%:12%"                   # Top-left StudyIQ/StudyIAS logo area
+  - "75%:88%:25%:12%"                 # Bottom-right clideo.com watermark
+
+# ===== Intro Cover (first 2 minutes) =====
+# Covers StudyIQ marketing, teacher name, icons in first 120 seconds
+intro_cover_duration: 120             # 2 minutes in seconds
+intro_mute_duration: 120              # Mute audio for first 2 minutes (removes StudyIQ audio mentions)
+
+# Regions to cover with black box during intro (hides StudyIQ branding)
+intro_cover_regions:
+  - region: "0%:0%:100%:15%"          # Top banner - StudyIQ text & logo
+    color: "black"
+    opacity: "0.95"
+  - region: "0%:85%:100%:15%"         # Bottom area - teacher name "By- Aadesh Singh"
+    color: "black"
+    opacity: "0.95"
+
+# Your branding shown during intro (overlaid on the covered areas)
+intro_name: "Pravat Kumar Dey"
+intro_name_fontsize: 36
+intro_name_color: "white"
+intro_channel_text: "Civil Services & Competitive Exam Prep"
+intro_channel_fontsize: 28
 
 # ===== Playlist =====
 playlist_name: null                  # YouTube playlist name (set to null to skip playlist)
@@ -54,3 +85,4 @@ token_file: "config/youtube_token.json"
 # ===== Paths =====
 input_dir: "C:/Users/PravatkumarDey/Downloads"
 output_dir: "output"
+temp_dir: "D:/temp"                  # FFmpeg temp directory (C: drive is full, use D:)

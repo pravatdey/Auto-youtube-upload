@@ -37,7 +37,8 @@ def process_video(input_path: str, output_path: str, config: dict, logo_path: st
     # Build filter chains
     video_args, uses_logo = build_video_filters(config, logo_path, info["width"], info["height"])
     pitch_shift = config.get("pitch_shift", 1.0)
-    audio_args = build_audio_filters(pitch_shift, sample_rate)
+    intro_mute = config.get("intro_mute_duration", 0)
+    audio_args = build_audio_filters(pitch_shift, sample_rate, intro_mute)
 
     # Construct ffmpeg command
     cmd = ["ffmpeg", "-y", "-i", input_path]
@@ -73,12 +74,22 @@ def process_video(input_path: str, output_path: str, config: dict, logo_path: st
     # Print full command for debugging
     print(f"FFmpeg command: {' '.join(cmd)}")
 
+    # Set temp directory to avoid C: drive (may be full)
+    env = os.environ.copy()
+    temp_dir = config.get("temp_dir")
+    if temp_dir:
+        os.makedirs(temp_dir, exist_ok=True)
+        env["TEMP"] = temp_dir
+        env["TMP"] = temp_dir
+        env["TMPDIR"] = temp_dir
+
     # Run ffmpeg with real-time output
     process = subprocess.Popen(
         cmd,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
+        env=env,
     )
 
     # Print stderr lines for progress (ffmpeg writes progress to stderr)
