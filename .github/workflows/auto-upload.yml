@@ -1,6 +1,7 @@
 name: Auto YouTube Upload
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'jobs.yaml'
