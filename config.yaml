@@ -13,11 +13,7 @@ logo_scale: 0.05                     # Logo size 5% of video width
 # Extra logo overlays to cover StudyIQ icons
 extra_logo_positions:
   - position: "W-w-2:2"             # Top-right corner, tight to edge to fully cover StudyIQ icon
-    scale: 0.05
-  - position: "top-center"           # Covers StudyIQ icon at top during first 40s (after trim)
-    scale: 0.12
-    start: 0
-    end: 40
+    scale: 0.10
 text_position: "top-left"            # Where to place text watermark
 font_size: 24
 font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 1.0 = solid)
@@ -37,7 +33,7 @@ blur_region: null                        # Disabled
 extra_blur_regions: []                   # Disabled
 
 # ===== Trim =====
-trim_start: 20                        # Cut first 20 seconds (removes original intro)
+trim_start: 60                        # Cut first 60 seconds (removes original intro)
 
 # ===== Intro Cover =====
 intro_cover_duration: 0               # Disabled - trimming intro instead
