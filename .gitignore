@@ -7,3 +7,10 @@ __pycache__/
 *.pyc
 output/
 downloads/
+
+# Claude Code (machine/session-specific)
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# Test artifacts
+test_gemini_hindi.wav

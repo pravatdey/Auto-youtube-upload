@@ -13,7 +13,12 @@ logo_scale: 0.05                     # Logo size 5% of video width
 # Extra logo overlays to cover StudyIQ icons
 extra_logo_positions:
   - position: "W-w:0"               # Top-right corner, flush to edge, exactly on top of StudyIQ icon
-    scale: 0.05                      # 5% - smaller to match StudyIQ icon size exactly
+    scale: 0.08                      # 8% - larger to fully cover StudyIQ icon with margin
+
+# Blur regions to remove any remaining StudyIQ branding that shows through
+# StudyIQ typically places: icon at top-right, text watermark at bottom-right
+extra_blur_regions:
+  - "88%:0%:12%:10%"                # Top-right area behind/around your logo (catches any leaking icon edges)
 text_position: "top-left"            # Where to place text watermark
 font_size: 24
 font_color: "white@0.75"            # Color with transparency (0.0 = invisible, 1.0 = solid)
@@ -50,13 +55,13 @@ intro_channel_text: null
 intro_channel_fontsize: 28
 
 # ===== Playlist =====
-playlist_name: null                  # YouTube playlist name (set to null to skip playlist)
+playlist_name: "Modern Indian History | Complete Series"   # YouTube playlist name
 
 # ===== Thumbnail =====
 thumbnail_path: "assets/thumbnail.jpg"   # Path to thumbnail image (JPG/PNG, max 2MB, 1280x720 recommended)
 
 # ===== YouTube Upload =====
-default_privacy: "private"           # Upload as private first, make public after review
+default_privacy: "public"            # Upload as public
 category_id: "27"                    # 27 = Education
 default_tags:
   - "UPSC"
@@ -75,7 +80,21 @@ default_tags:
   - "GK today"
   - "current affairs in english"
 title_template: "{title} - Part {part_number}"
-description_template: "Part {part_number} of {total_parts}"
+description_template: |
+  Modern Indian History - Part {part_number} of {total_parts}
+
+  Complete series covering Modern Indian History for UPSC, IAS, and all competitive exams.
+
+  Topics covered in this series:
+  - British Rule in India
+  - Indian National Movement
+  - Important Acts, Reforms & Policies
+  - Freedom Struggle & Key Events
+  - Post-Independence India
+
+  Subscribe for more UPSC preparation content!
+
+  #UPSC #ModernIndianHistory #IAS #CivilServices #CompetitiveExams
 
 # ===== YouTube Credentials =====
 client_secrets_file: "config/client_secrets.json"

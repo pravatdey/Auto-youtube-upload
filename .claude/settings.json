@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"C:/Users/PravatkumarDey/Downloads/\"*Indian*Geography* \"C:/Users/PravatkumarDey/Downloads/\"*Understand*)",
+      "Bash(python -c ':*)",
+      "Read(//d//**)",
+      "Bash(python -c \"import sys; line=sys.stdin.read\\(\\); parts=line.split\\('Processing: '\\); print\\(parts[-1][:15] if len\\(parts\\)>1 else line[:80]\\)\")",
+      "mcp__claude_ai_Hugging_Face_2__gr1_z_image_turbo_generate",
+      "Bash(python _build_food_crisis.py)",
+      "Bash(taskkill //F //IM python.exe //FI \"WINDOWTITLE eq *rebrand*\")",
+      "Bash(ls -la \"D:/temp/news_video_temp/food_narr_\"*.mp3)",
+      "Bash(ls -la \"D:/temp/news_video_temp/food_slide_\"*.png)",
+      "Bash(ls -la \"D:/temp/news_video_temp/_food_sec_\"*.mp4)",
+      "Bash(ls -la \"D:/temp/_food_part_\"*.ts)",
+      "Bash(ls -la \"D:/temp/_food_part_\"*)",
+      "Bash(ls -la \"D:/temp/news_video_temp/_food_concat\"*)",
+      "Bash(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"D:/temp/Global_Food_Crisis_Hormuz_FINAL.mp4\")",
+      "Bash(python _rebuild_cinematic.py)",
+      "Bash(ls -la \"D:/temp/news_video_temp/_cine_\"*.mp4)",
+      "Bash(ls -la \"D:/temp/news_video_temp/_cine_ts_\"*.mp4)",
+      "Bash(python _fix_static.py)",
+      "Bash(python _fix_last2.py)",
+      "Bash(python _fix_final2.py)",
+      "Bash(python -c \"from PIL import ImageFont; f = ImageFont.truetype\\('assets/fonts/arial.ttf', 40\\); print\\('Font OK'\\)\")",
+      "Bash(python create_opsc_video.py)",
+      "Bash(taskkill //PID 30316 //F)",
+      "Bash(ffprobe -v quiet -print_format json -show_format -show_streams d:/Personal_projects/Auto-youtube-upload/output/opsc_ocs_prelims_2024_solutions.mp4)",
+      "Bash(start \"\" \"d:/Personal_projects/Auto-youtube-upload/output/opsc_ocs_prelims_2024_solutions.mp4\")",
+      "Bash(cmd.exe /c start \"\" \"d:\\\\Personal_projects\\\\Auto-youtube-upload\\\\output\\\\opsc_ocs_prelims_2024_solutions.mp4\")",
+      "Bash(python create_opsc_video_with_audio.py)",
+      "Bash(ls d:/Personal_projects/Auto-youtube-upload/output/frames_v2/*.mp4)",
+      "Bash(ffprobe -v quiet -print_format json -show_format -show_streams d:/Personal_projects/Auto-youtube-upload/output/opsc_ocs_prelims_2024_with_audio.mp4)",
+      "Bash(cmd.exe /c start \"\" \"d:\\\\Personal_projects\\\\Auto-youtube-upload\\\\output\\\\opsc_ocs_prelims_2024_with_audio.mp4\")"
+    ],
+    "additionalDirectories": [
+      "D:\\temp"
+    ]
+  }
+}
